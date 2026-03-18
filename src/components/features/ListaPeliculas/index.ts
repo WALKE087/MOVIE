@@ -1,0 +1,1 @@
+export { ListaPeliculas } from './ListaPeliculas';

@@ -1,0 +1,1 @@
+export { TarjetaSerie } from './TarjetaSerie';

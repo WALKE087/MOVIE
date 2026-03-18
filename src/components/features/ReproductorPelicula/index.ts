@@ -1,0 +1,1 @@
+export { ReproductorPelicula } from './ReproductorPelicula';

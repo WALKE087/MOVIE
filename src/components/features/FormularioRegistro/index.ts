@@ -1,0 +1,1 @@
+export { FormularioRegistro } from './FormularioRegistro';

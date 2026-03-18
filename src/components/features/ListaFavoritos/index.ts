@@ -1,0 +1,1 @@
+export { ListaFavoritos } from './ListaFavoritos';

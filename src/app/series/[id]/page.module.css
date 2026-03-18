@@ -1,0 +1,277 @@
+.contenedor {
+  position: relative;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 100%);
+}
+
+.fondoPortada {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+
+.gradiente {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(15, 15, 30, 0.3) 0%,
+    rgba(15, 15, 30, 0.7) 50%,
+    rgba(15, 15, 30, 1) 100%
+  );
+}
+
+.contenido {
+  position: relative;
+  z-index: 1;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.cabeceraDetalle {
+  display: flex;
+  gap: 3rem;
+  padding-top: 15rem;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.contenedorPoster {
+  flex-shrink: 0;
+}
+
+.imagenPoster {
+  width: 300px;
+  height: 450px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease;
+}
+
+.imagenPoster:hover {
+  transform: scale(1.03);
+}
+
+.informacion {
+  flex: 1;
+  color: #e0e0e0;
+}
+
+.titulo {
+  font-size: 3rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.tituloOriginal {
+  font-size: 1.3rem;
+  color: #9ca3af;
+  margin: 0 0 1.5rem 0;
+  font-style: italic;
+}
+
+.metadata {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+}
+
+.dato {
+  padding: 0.5rem 1rem;
+  background: rgba(102, 126, 234, 0.1);
+  border-radius: 20px;
+  border: 1px solid rgba(102, 126, 234, 0.3);
+  color: #e0e0e0;
+}
+
+.calificacion {
+  padding: 0.5rem 1rem;
+  background: rgba(251, 191, 36, 0.1);
+  border-radius: 20px;
+  border: 1px solid rgba(251, 191, 36, 0.3);
+  color: #fbbf24;
+  font-weight: 600;
+}
+
+.generos {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.genero {
+  padding: 0.5rem 1.2rem;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
+  border: 1px solid rgba(102, 126, 234, 0.4);
+  border-radius: 25px;
+  color: #c4b5fd;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.genero:hover {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.3) 0%, rgba(118, 75, 162, 0.3) 100%);
+  transform: translateY(-2px);
+}
+
+.sinopsis {
+  margin-bottom: 2rem;
+}
+
+.sinopsis h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.sinopsis p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #d1d5db;
+}
+
+.creadores,
+.redes,
+.estado {
+  margin-bottom: 1.5rem;
+}
+
+.creadores h3,
+.redes h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: #fff;
+}
+
+.creadores p {
+  font-size: 1rem;
+  color: #d1d5db;
+}
+
+.logosRedes {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.nombreRed {
+  padding: 0.5rem 1rem;
+  background: rgba(102, 126, 234, 0.15);
+  border-radius: 8px;
+  color: #e0e0e0;
+  font-size: 0.95rem;
+}
+
+.estado {
+  font-size: 1rem;
+  color: #d1d5db;
+}
+
+.estado strong {
+  color: #fff;
+  margin-right: 0.5rem;
+}
+
+.cargando,
+.error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-size: 1.5rem;
+  color: #e0e0e0;
+}
+
+.error {
+  color: #ef4444;
+}
+
+.seccionReproductor {
+  margin-top: 3rem;
+  padding-top: 3rem;
+  border-top: 1px solid rgba(102, 126, 234, 0.15);
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+  .cabeceraDetalle {
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10rem;
+  }
+
+  .imagenPoster {
+    width: 250px;
+    height: 375px;
+  }
+
+  .titulo {
+    font-size: 2.5rem;
+    text-align: center;
+  }
+
+  .tituloOriginal {
+    text-align: center;
+  }
+
+  .metadata,
+  .generos {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .contenido {
+    padding: 1rem;
+  }
+
+  .cabeceraDetalle {
+    gap: 2rem;
+  }
+
+  .imagenPoster {
+    width: 200px;
+    height: 300px;
+  }
+
+  .titulo {
+    font-size: 2rem;
+  }
+
+  .metadata {
+    font-size: 0.9rem;
+  }
+
+  .sinopsis p {
+    font-size: 1rem;
+  }
+}

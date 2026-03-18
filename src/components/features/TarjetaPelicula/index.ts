@@ -1,0 +1,1 @@
+export { TarjetaPelicula } from './TarjetaPelicula';

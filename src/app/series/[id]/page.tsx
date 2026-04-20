@@ -1,6 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+
+export const dynamic = 'force-dynamic';
 import { useParams } from 'next/navigation';
 import { SerieTMDB } from '@/types';
 import { servicioSeries } from '@/services/tmdb/servicioSeries';

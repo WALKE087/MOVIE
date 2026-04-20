@@ -1,6 +1,8 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+
+export const dynamic = 'force-dynamic';
 import { ListaSeries } from '@/components/features/ListaSeries';
 import type { SerieTMDB } from '@/types';
 import { servicioSeries } from '@/services/tmdb/servicioSeries';

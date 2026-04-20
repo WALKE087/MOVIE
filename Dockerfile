@@ -16,17 +16,17 @@ RUN npm ci
 COPY . .
 
 # Variables de entorno para build
-ENV NEXT_TELEMETRY_DISABLED 1
-ENV NODE_ENV production
+ENV NEXT_TELEMETRY_DISABLED=1
+ENV NODE_ENV=production
 
-# ARGs para variables de build (se pasan desde docker-compose)
-ARG NEXT_PUBLIC_TMDB_API_KEY
-ARG NEXT_PUBLIC_TMDB_BASE_URL
-ARG NEXT_PUBLIC_TMDB_IMAGE_BASE_URL
-ARG NEXT_PUBLIC_TMDB_IMAGE_SIZE_POSTER
-ARG NEXT_PUBLIC_TMDB_IMAGE_SIZE_BACKDROP
-ARG NEXT_PUBLIC_VIDSRC_BASE_URL
-ARG NEXT_PUBLIC_VIDLINK_BASE_URL
+# ARGs para variables de build (se pasan desde docker-compose o docker build)
+ARG NEXT_PUBLIC_TMDB_API_KEY=dummy_key_for_build
+ARG NEXT_PUBLIC_TMDB_BASE_URL=https://api.themoviedb.org/3
+ARG NEXT_PUBLIC_TMDB_IMAGE_BASE_URL=https://image.tmdb.org/t/p
+ARG NEXT_PUBLIC_TMDB_IMAGE_SIZE_POSTER=w500
+ARG NEXT_PUBLIC_TMDB_IMAGE_SIZE_BACKDROP=w1280
+ARG NEXT_PUBLIC_VIDSRC_BASE_URL=https://vidsrc.to/embed/movie
+ARG NEXT_PUBLIC_VIDLINK_BASE_URL=https://vidlink.pro/movie
 
 # Convertir ARGs a ENVs disponibles durante el build
 ENV NEXT_PUBLIC_TMDB_API_KEY=$NEXT_PUBLIC_TMDB_API_KEY
@@ -44,8 +44,8 @@ RUN npm run build
 FROM node:18-alpine AS runner
 WORKDIR /app
 
-ENV NODE_ENV production
-ENV NEXT_TELEMETRY_DISABLED 1
+ENV NODE_ENV=production
+ENV NEXT_TELEMETRY_DISABLED=1
 
 # Crear usuario no-root
 RUN addgroup --system --gid 1001 nodejs
@@ -64,8 +64,8 @@ USER nextjs
 # Exponer puerto
 EXPOSE 3000
 
-ENV PORT 3000
-ENV HOSTNAME "0.0.0.0"
+ENV PORT=3000
+ENV HOSTNAME="0.0.0.0"
 
 # Comando de inicio
 CMD ["node", "server.js"]

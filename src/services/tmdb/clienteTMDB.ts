@@ -14,12 +14,13 @@ export class ClienteTMDB {
   constructor() {
     this.urlBase = TMDB_BASE_URL;
     this.tokenAcceso = TMDB_API_KEY;
+    this.esTokenBearer = this.tokenAcceso.startsWith('eyJ');
+  }
 
+  private validarConfiguracion(): void {
     if (!this.tokenAcceso) {
       throw new Error('TMDB API key no configurada en las variables de entorno');
     }
-
-    this.esTokenBearer = this.tokenAcceso.startsWith('eyJ');
   }
 
   private construirUrl(ruta: string, parametros?: Record<string, string | number>): string {
@@ -41,6 +42,8 @@ export class ClienteTMDB {
   }
 
   async obtener<T>(ruta: string, opciones: OpcionesPeticion = {}): Promise<T> {
+    this.validarConfiguracion();
+    
     const { parametros } = opciones;
     const url = this.construirUrl(ruta, parametros);
 

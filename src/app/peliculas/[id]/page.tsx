@@ -1,6 +1,8 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+
+export const dynamic = 'force-dynamic';
 import { useParams, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { ReproductorPelicula } from '@/components/features/ReproductorPelicula';

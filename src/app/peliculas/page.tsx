@@ -1,6 +1,8 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+
+export const dynamic = 'force-dynamic';
 import { ListaPeliculas } from '@/components/features/ListaPeliculas';
 import type { PeliculaTMDB } from '@/types';
 import { servicioPeliculas } from '@/services/tmdb/servicioPeliculas';
@@ -14,45 +16,33 @@ export default function PaginaPeliculas() {
   const [totalPaginas, setTotalPaginas] = useState(0);
   const [categoriaActual, setCategoriaActual] = useState<'populares' | 'mejorValoradas' | 'enCartelera'>('populares');
 
-  useEffect(() => {
-    let isMounted = true;
+  const cargarPeliculas = async () => {
+    try {
+      setEstaCargando(true);
+      setError(null);
 
-    const cargarPeliculas = async () => {
-      try {
-        setEstaCargando(true);
-        setError(null);
-
-        let respuesta;
-        if (categoriaActual === 'populares') {
-          respuesta = await servicioPeliculas.obtenerPopulares(1);
-        } else if (categoriaActual === 'mejorValoradas') {
-          respuesta = await servicioPeliculas.obtenerMejorValoradas(1);
-        } else {
-          respuesta = await servicioPeliculas.obtenerEnCartelera(1);
-        }
-
-        if (isMounted) {
-          setPeliculas(respuesta.results);
-          setTotalPaginas(respuesta.total_pages);
-          setPaginaActual(respuesta.page);
-        }
-      } catch (err) {
-        if (isMounted) {
-          setError('Error al cargar las películas. Por favor, intenta de nuevo.');
-          console.error('Error cargando películas:', err);
-        }
-      } finally {
-        if (isMounted) {
-          setEstaCargando(false);
-        }
+      let respuesta;
+      if (categoriaActual === 'populares') {
+        respuesta = await servicioPeliculas.obtenerPopulares(1);
+      } else if (categoriaActual === 'mejorValoradas') {
+        respuesta = await servicioPeliculas.obtenerMejorValoradas(1);
+      } else {
+        respuesta = await servicioPeliculas.obtenerEnCartelera(1);
       }
-    };
 
+      setPeliculas(respuesta.results);
+      setTotalPaginas(respuesta.total_pages);
+      setPaginaActual(respuesta.page);
+    } catch (err) {
+      setError('Error al cargar las películas. Por favor, intenta de nuevo.');
+      console.error('Error cargando películas:', err);
+    } finally {
+      setEstaCargando(false);
+    }
+  };
+
+  useEffect(() => {
     cargarPeliculas();
-
-    return () => {
-      isMounted = false;
-    };
   }, [categoriaActual]);
 
   const cargarMasPeliculas = async () => {
@@ -141,7 +131,7 @@ export default function PaginaPeliculas() {
       {error && (
         <div className={styles.error}>
           <p>{error}</p>
-          <button onClick={() => cargarPeliculas(1, categoriaActual)} className={styles.botonReintentar}>
+          <button onClick={cargarPeliculas} className={styles.botonReintentar}>
             Reintentar
           </button>
         </div>
